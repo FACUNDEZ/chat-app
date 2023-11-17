@@ -6,6 +6,7 @@ export default function UserProvider({ children }) {
 
     const [user, setUser] = useState({
         email: "",
+        token: ""
     })
 
     return (

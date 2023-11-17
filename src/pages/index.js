@@ -14,10 +14,6 @@ export default function Home() {
   const { user, setUser } = useContext(UserContext);
   const [listUsers, setListUsers] = useContext(ListUsersContext)
 
-  const setListConnectedUsers =  (newConnectedUser) => {
-     setListUsers([...listUsers, { email: newConnectedUser.email }]);
-  };
-
   const getData = async () => {
     try {
       const api = "http://localhost:3000/api/usuarios/login"
@@ -37,8 +33,11 @@ export default function Home() {
         return
       }
 
+      setUser({ email: emailRef.current?.value, token: data.token });
+
       alert(data.msg)
       router.push("/chat")
+      return data.token
     } catch (error) {
       console.log(error)
     }
@@ -51,12 +50,6 @@ export default function Home() {
       alert("Completa los datos, por favor")
       return
     }
-
-    setUser({ email: emailRef.current?.value })
-    setListConnectedUsers({ email: emailRef.current?.value })
-
-    console.log(listUsers)
-
 
     await getData()
   }

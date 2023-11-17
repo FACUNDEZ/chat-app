@@ -28,7 +28,8 @@ function page() {
                 return
             }
 
-            alert('Registrado correctamente!')
+            alert(data.msg)
+            router.push("/chat")
         } catch (error) {
             console.log(error)
         }

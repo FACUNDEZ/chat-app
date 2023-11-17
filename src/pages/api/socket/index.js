@@ -1,6 +1,12 @@
 import { Server } from "socket.io";
+import { UserContext } from "@/context/UserContext";
+import { ListUsersContext } from "@/context/ListUsersContext";
+import { useContext } from "react";
 
 export default function ManejadorDeSockets(req, res) {
+    const { user, setUser } = useContext(UserContext);
+    const [listUsers, setListUsers] = useContext(ListUsersContext)
+
     if (res.socket.server.io) {
         console.log("Conexion ya configurada!")
         res.end()

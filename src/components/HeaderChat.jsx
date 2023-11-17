@@ -1,22 +1,39 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
+import { useRouter } from "next/router"
 import { UserContext } from "@/context/UserContext"
 import { ListUsersContext } from "@/context/ListUsersContext"
+import { io } from "socket.io-client"
 
 function HeaderChat() {
-    const { user } = useContext(UserContext)
-    const [listUsers] = useContext(ListUsersContext)
-    console.log(listUsers)
+
+    const router = useRouter()
+    const { user, setUser } = useContext(UserContext)
+    const [listUsers, setListUsers] = useContext(ListUsersContext)
+
+    // useEffect(() => {
+    //    fetch("/api/socket");
+
+    //  socket = io();
+
+    //socket.on("connected-users-list", (listUsers) => {
+    //  setListUsers(listUsers);
+    // });
+
+    //return () => {
+    //   socket.disconnect();
+    // };
+    // }, []);
 
     const [aside, setAside] = useState(false)
 
     const toggleMenu = () => {
-        setAside(true)
-    }
+        setAside(true);
+    };
 
     return (
         <header className="bg-emerald-400 text-center">
-            <div className="flex justify-between">
-                <button onClick={toggleMenu} className="text-black block lg:hidden ml-1"><svg class="icon icon-tabler icon-tabler-menu" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <div className="flex justify-between items-center">
+                <button onClick={toggleMenu} type="button" className="text-black block ml-1"><svg width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M4 8l16 0" />
                     <path d="M4 16l16 0" />
@@ -32,13 +49,26 @@ function HeaderChat() {
                                 </svg>
                             </button>
                             <h1 className="font-bold text-xl">Usuarios Conectados</h1>
-                            <ul>
-                         
+                            <ul id="lista">
                                 {
-                                listUsers.map((user, index) => (
-                                    <li key={index}>{user.email}</li>
-                                ))}
+                                    listUsers.map((user, index) => (
+                                        <li key={index}>{user.email}</li>
+                                    ))}
                             </ul>
+
+                            <div>
+                            <button className="mr-1 fixed bottom-5 left-48" onClick={() => {
+                                setUser({ email: "", token: "" })
+                                router.push("/")
+                            }}>
+                                <svg width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                    <path d="M9 12h12l-3 -3" />
+                                    <path d="M18 15l3 -3" />
+                                </svg>
+                            </button>
+                        </div>
                         </div>
                     </aside>
                 )}

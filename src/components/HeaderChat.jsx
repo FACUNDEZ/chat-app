@@ -2,27 +2,12 @@ import { useState, useContext, useEffect } from "react"
 import { useRouter } from "next/router"
 import { UserContext } from "@/context/UserContext"
 import { ListUsersContext } from "@/context/ListUsersContext"
-import { io } from "socket.io-client"
 
 function HeaderChat() {
 
     const router = useRouter()
     const { user, setUser } = useContext(UserContext)
-    const [listUsers, setListUsers] = useContext(ListUsersContext)
-
-    // useEffect(() => {
-    //    fetch("/api/socket");
-
-    //  socket = io();
-
-    //socket.on("connected-users-list", (listUsers) => {
-    //  setListUsers(listUsers);
-    // });
-
-    //return () => {
-    //   socket.disconnect();
-    // };
-    // }, []);
+    const [listUsers, setListUsers] = useState([])
 
     const [aside, setAside] = useState(false)
 
@@ -57,18 +42,18 @@ function HeaderChat() {
                             </ul>
 
                             <div>
-                            <button className="mr-1 fixed bottom-5 left-48" onClick={() => {
-                                setUser({ email: "", token: "" })
-                                router.push("/")
-                            }}>
-                                <svg width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                                    <path d="M9 12h12l-3 -3" />
-                                    <path d="M18 15l3 -3" />
-                                </svg>
-                            </button>
-                        </div>
+                                <button className="mr-1 fixed bottom-5 left-48" onClick={() => {
+                                    setUser({ email: "", token: "" })
+                                    router.push("/")
+                                }}>
+                                    <svg width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                        <path d="M9 12h12l-3 -3" />
+                                        <path d="M18 15l3 -3" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </aside>
                 )}

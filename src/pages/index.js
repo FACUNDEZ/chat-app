@@ -3,7 +3,6 @@ import Header from "@/components/Header"
 import { useRouter } from "next/navigation"
 import { useRef, useContext } from "react"
 import { UserContext } from "@/context/UserContext"
-import { ListUsersContext } from "@/context/ListUsersContext"
 
 export default function Home() {
   const router = useRouter()
@@ -12,7 +11,6 @@ export default function Home() {
   const passwordRef = useRef(null)
 
   const { user, setUser } = useContext(UserContext);
-  const [listUsers, setListUsers] = useContext(ListUsersContext)
 
   const getData = async () => {
     try {

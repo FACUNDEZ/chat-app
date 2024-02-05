@@ -8,15 +8,15 @@ export default async function Registarse(req, res) {
     const newUser = req.body;
 
     if (Object.values(newUser).includes(undefined)) {
-        return res.status(400).json({ error: "Ingrese todos los datos, por favor" })
+        return res.status(400).json({ error: "Ingrese todos los datos, por favor." })
     }
 
     if (!newUser.email.match(emailRegex)) {
-        return res.status(400).json({ error: "Email invalido" })
+        return res.status(400).json({ error: "Email inválido." })
     }
 
     if (!newUser.password.match(passwordRegex)) {
-        return res.status(400).json({ error: "Contraseña invalida" })
+        return res.status(400).json({ error: "Contraseña inválida. Debes insertar mínimo 8 carácteres (letras, una mayúscula y números)." })
     }
 
     const hash = await encriptarPassword(newUser.password)
@@ -25,10 +25,10 @@ export default async function Registarse(req, res) {
     const usuarioSubido = await prisma.usuario.create({ data: usuarioAGuardar })
 
     if (!usuarioSubido) {
-        return res.status(400).json({ error: "No se pudo crear el usuario" })
+        return res.status(400).json({ error: "No se pudo crear el usuario." })
     }
 
-    const token = sign(token, process.env.TOKEN_SECRET)
+    const token = sign(usuarioSubido.id, process.env.TOKEN_SECRET)
 
-    return res.status(201).json(JSON.stringify({ msg: "Usuario registrado correctamente!", token}))
+    return res.status(201).json({ msg: "Usuario registrado correctamente!", token})
 }

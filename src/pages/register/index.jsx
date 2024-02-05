@@ -29,7 +29,7 @@ function page() {
             }
 
             alert(data.msg)
-            router.push("/chat")
+            router.push("/")
         } catch (error) {
             console.log(error)
         }

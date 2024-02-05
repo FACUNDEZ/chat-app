@@ -24,10 +24,8 @@ export default function Home() {
       })
       const data = await response.json()
 
-      if (response.status === 400) {
+      if (response.status === 400 || response.status === 401) {
         alert(data.error)
-      } else if (response.status === 401) {
-        alert(data.msg)
         return
       }
 
@@ -45,7 +43,7 @@ export default function Home() {
     e.preventDefault()
 
     if (!emailRef.current?.value || !passwordRef.current?.value) {
-      alert("Completa los datos, por favor")
+      alert("Completa los datos, por favor.")
       return
     }
 

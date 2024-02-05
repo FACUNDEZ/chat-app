@@ -1,19 +1,11 @@
 import { useState, useContext } from "react"
 import { useRouter } from "next/router"
 import { UserContext } from "@/context/UserContext"
-import { ListUsersContext } from "@/context/ListUsersContext"
 
 function HeaderChat() {
 
     const router = useRouter()
     const { user, setUser } = useContext(UserContext)
-    const [listUsers, setListUsers] = useState([])
-
-    const [aside, setAside] = useState(false)
-
-    const toggleMenu = () => {
-        setAside(true);
-    };
 
     return (
         <header className="bg-emerald-400 text-center flex flex-row">

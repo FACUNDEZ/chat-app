@@ -13,7 +13,7 @@ function Page() {
 
     const getApi = async () => {
         try {
-            const api = "http://chatsim.netlify.app/api/usuarios/register"
+            const api = "https://chatsim.netlify.app/api/usuarios/register"
             const response = await fetch(api, {
                 method: 'POST',
                 headers: {

@@ -2,9 +2,18 @@ import { compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
 import { emailRegex, passwordRegex } from '@/utils/regex'
 import { PrismaClient } from '@prisma/client'
+import cors from 'cors'
 const prisma = new PrismaClient()
 
+const corsMiddleware = cors({
+    origin: '*', // Esto permite todas las solicitudes de origen
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
+  })
+
 export default async function Login(req, res) {
+    await corsMiddleware(req, res)
+
     const usuario = req.body
 
     if (!usuario.email.match(emailRegex)) {

@@ -3,7 +3,7 @@ import Header from "@/components/Header"
 import { useRouter } from "next/navigation"
 import { useRef } from "react"
 
-function page() {
+function Page() {
     const router = useRouter()
 
     const nameRef = useRef(null)
@@ -132,4 +132,4 @@ function page() {
     )
 }
 
-export default page
+export default Page

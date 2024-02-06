@@ -14,7 +14,7 @@ function Footer() {
                 </div>
 
                 <p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-black">
-                    "Conectando personas, una conversación a la vez. Descubre un mundo de palabras en nuestra app de chat."
+                    "Conectando personas, una conversación a la vez. Descubre un mundo de palabras en nuestra app de chat".
                 </p>
 
 

@@ -14,7 +14,7 @@ export default function Home() {
 
   const getData = async () => {
     try {
-      const api = "http://chatsim.netlify.app/api/usuarios/login"
+      const api = "https://chatsim.netlify.app/api/usuarios/login"
       const response = await fetch(api, {
         method: 'POST',
         headers: {

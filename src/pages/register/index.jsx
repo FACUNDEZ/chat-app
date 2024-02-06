@@ -13,7 +13,7 @@ function Page() {
 
     const getApi = async () => {
         try {
-            const api = "http://localhost:3000/api/usuarios/register"
+            const api = "https://localhost:3000/api/usuarios/register"
             const response = await fetch(api, {
                 method: 'POST',
                 headers: {

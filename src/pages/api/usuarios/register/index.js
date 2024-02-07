@@ -1,7 +1,8 @@
 import { emailRegex, passwordRegex } from '@/utils/regex';
 import { encriptarPassword } from '@/utils/crypto';
 import { sign } from 'jsonwebtoken';
-import { PrismaClient } from '@prisma/client/edge'
+import { PrismaClient } from '@prisma/client'
+
 const prisma = new PrismaClient()
 
 export default async function Registarse(req, res) {

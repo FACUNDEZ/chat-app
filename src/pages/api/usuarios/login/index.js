@@ -1,7 +1,8 @@
 import { compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
 import { emailRegex, passwordRegex } from '@/utils/regex'
-import { PrismaClient } from '@prisma/client/edge'
+import { PrismaClient } from '@prisma/client'
+
 const prisma = new PrismaClient()
 
 export default async function Login(req, res) {

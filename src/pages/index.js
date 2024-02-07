@@ -14,7 +14,7 @@ export default function Home() {
 
   const getData = async () => {
     try {
-      const api = "http://192.168.0.210:3000/api/usuarios/login"
+      const api = "https://192.168.0.210:3000/api/usuarios/login"
       const response = await fetch(api, {
         method: 'POST',
         headers: {

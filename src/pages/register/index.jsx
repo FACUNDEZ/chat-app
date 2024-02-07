@@ -13,7 +13,7 @@ function Page() {
 
     const getApi = async () => {
         try {
-            const api = "http://192.168.0.210:3000/api/usuarios/register"
+            const api = "https://chatsim-xyr6.onrender.com/api/usuarios/register"
             const response = await fetch(api, {
                 method: 'POST',
                 headers: {

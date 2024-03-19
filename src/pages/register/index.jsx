@@ -13,7 +13,7 @@ function Page() {
 
     const getApi = async () => {
         try {
-            const api = "https://chatsim-xyr6.onrender.com/api/usuarios/register"
+            const api = "http://localhost:3000/api/usuarios/register"
             const response = await fetch(api, {
                 method: 'POST',
                 headers: {
@@ -106,6 +106,8 @@ function Page() {
                             <div class="relative">
                                 <input
                                     ref={ageRef}
+                                    min={18}
+                                    max={80}
                                     type="number"
                                     class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                                     placeholder="Edad..."

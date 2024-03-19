@@ -28,6 +28,16 @@ export default async function Registarse(req, res) {
             return res.status(400).json({ error: "Contraseña inválida. Debes insertar mínimo 8 carácteres (letras, una mayúscula y números)." })
         }
 
+        const usuarioExistente = await prisma.usuario.findUnique({
+            where: {
+                email: newUser.email
+            }
+        });
+
+        if (usuarioExistente) {
+            return res.status(400).json({ error: "El correo electrónico ya está en uso." })
+        }
+
         const hash = await encriptarPassword(newUser.password)
 
         const usuarioAGuardar = { ...newUser, password: hash }
